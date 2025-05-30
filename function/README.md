@@ -176,6 +176,3 @@ Feel free to contribute to this module by:
 3. Improving documentation
 4. Adding new statistical visualization functions
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
