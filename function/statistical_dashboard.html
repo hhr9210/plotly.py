@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical Visualization Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .plot-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .plot-title {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Statistical Visualization Dashboard</h1>
+            <p>Interactive statistical plots generated using Plotly</p>
+        </div>
+
+        <div class="plot-container">
+            <div class="plot-title">1. Normal Distribution Plot</div>
+            <div id="distribution-plot"></div>
+        </div>
+
+        <div class="plot-container">
+            <div class="plot-title">2. Correlation Matrix</div>
+            <div id="correlation-matrix"></div>
+        </div>
+
+        <div class="plot-container">
+            <div class="plot-title">3. Advanced Box Plot with Confidence Intervals</div>
+            <div id="box-plot"></div>
+        </div>
+
+        <div class="plot-container">
+            <div class="plot-title">4. Statistical Test Plot</div>
+            <div id="statistical-test"></div>
+        </div>
+    </div>
+
+    <script>
+        // Generate random data
+        function generateNormalData(mean, std, size) {
+            let data = [];
+            for (let i = 0; i < size; i++) {
+                data.push(mean + std * Math.sqrt(-2 * Math.log(Math.random())) * Math.cos(2 * Math.PI * Math.random()));
+            }
+            return data;
+        }
+
+        // 1. Distribution Plot
+        const distData = generateNormalData(0, 1, 1000);
+        const distTrace = {
+            type: 'histogram',
+            x: distData,
+            name: 'Histogram',
+            opacity: 0.7,
+            marker: {color: '#1f77b4'}
+        };
+        const distLayout = {
+            title: 'Normal Distribution Example',
+            xaxis: {title: 'Value'},
+            yaxis: {title: 'Frequency'},
+            showlegend: true
+        };
+        Plotly.newPlot('distribution-plot', [distTrace], distLayout);
+
+        // 2. Correlation Matrix
+        const matrixData = Array(4).fill().map(() => Array(4).fill().map(() => Math.random() * 2 - 1));
+        const corrTrace = {
+            type: 'heatmap',
+            z: matrixData,
+            x: ['A', 'B', 'C', 'D'],
+            y: ['A', 'B', 'C', 'D'],
+            colorscale: 'RdBu'
+        };
+        const corrLayout = {
+            title: 'Correlation Matrix',
+            annotations: []
+        };
+        Plotly.newPlot('correlation-matrix', [corrTrace], corrLayout);
+
+        // 3. Box Plot
+        const groupA = generateNormalData(0, 1, 50);
+        const groupB = generateNormalData(1, 1, 50);
+        const boxTrace1 = {
+            type: 'box',
+            y: groupA,
+            name: 'Group A',
+            boxpoints: 'all',
+            jitter: 0.3,
+            pointpos: -1.8
+        };
+        const boxTrace2 = {
+            type: 'box',
+            y: groupB,
+            name: 'Group B',
+            boxpoints: 'all',
+            jitter: 0.3,
+            pointpos: -1.8
+        };
+        const boxLayout = {
+            title: 'Advanced Box Plot with Confidence Intervals',
+            yaxis: {title: 'Value'},
+            showlegend: true
+        };
+        Plotly.newPlot('box-plot', [boxTrace1, boxTrace2], boxLayout);
+
+        // 4. Statistical Test Plot
+        const testData1 = generateNormalData(0, 1, 100);
+        const testData2 = generateNormalData(1, 1, 100);
+        const testTrace1 = {
+            type: 'violin',
+            y: testData1,
+            name: 'Group 1',
+            box: {visible: true},
+            meanline: {visible: true}
+        };
+        const testTrace2 = {
+            type: 'violin',
+            y: testData2,
+            name: 'Group 2',
+            box: {visible: true},
+            meanline: {visible: true}
+        };
+        const testLayout = {
+            title: 'Statistical Test Plot (T-test)',
+            yaxis: {title: 'Value'},
+            showlegend: true
+        };
+        Plotly.newPlot('statistical-test', [testTrace1, testTrace2], testLayout);
+    </script>
+</body>
+</html> 

@@ -121,6 +121,53 @@ fig = create_statistical_test_plot(
 fig.show()
 ```
 
+## HTML Dashboard Version
+
+The module also includes an HTML dashboard version (`statistical_dashboard.html`) that provides an interactive web interface for all statistical visualizations. This version offers several advantages:
+
+### Features of the HTML Dashboard
+
+1. **Browser-Based Interface**
+   - No Python installation required
+   - Works directly in any modern web browser
+   - Responsive design that adapts to different screen sizes
+
+2. **Interactive Visualizations**
+   - All plots are fully interactive
+   - Support for zooming, panning, and hovering
+   - Ability to download plots as images
+   - Real-time data exploration
+
+3. **Modern UI Design**
+   - Clean and professional layout
+   - Card-based plot containers
+   - Consistent styling and typography
+   - Smooth animations and transitions
+
+4. **Implementation Details**
+   - Built with pure HTML, CSS, and JavaScript
+   - Uses Plotly.js for visualization
+   - Client-side data generation
+   - No server-side dependencies
+
+### Using the HTML Dashboard
+
+1. Simply open `statistical_dashboard.html` in a web browser
+2. All visualizations will load automatically
+3. Interact with the plots using:
+   - Mouse wheel for zooming
+   - Click and drag for panning
+   - Hover for detailed data points
+   - Download button for saving plots
+
+### Advantages Over Python Version
+
+- **Accessibility**: No programming knowledge required
+- **Portability**: Works on any device with a web browser
+- **Sharing**: Easy to share with others via web hosting
+- **Performance**: Client-side rendering for smooth interactions
+- **Maintenance**: No need to manage Python dependencies
+
 ## Contributing
 
 Feel free to contribute to this module by:
